@@ -9,6 +9,8 @@ class Employee extends Model
 {
     use HasFactory;
 
+    protected $table = 'staff';
+
     public function departments()
     {
         return $this->belongsToMany(
