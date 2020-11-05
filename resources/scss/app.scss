@@ -1,0 +1,120 @@
+@import 'variables';
+@import 'mixin';
+
+body {
+  margin: 0;
+  padding: 0;
+
+  min-width: 320px;
+  max-width: 1280px;
+
+  margin-right: auto;
+  margin-left: auto;
+
+  color: rgba(0, 0, 0, 0.5);
+
+  box-sizing: border-box;
+}
+
+.main-header {
+  min-height: 80px;
+
+  .navbar {
+    padding: 26px 9vw 14px 9vw;
+
+    .navbar-brand img {
+      height: 26px;
+      width: auto;
+    }
+
+    .nav-item {
+      .nav-link {
+        @include link-decoration;
+      }
+    }
+  }
+}
+
+.main-content {
+  min-height: 70vh;
+
+  .title {
+    text-align: center;
+    margin-bottom: 26px;
+  }
+
+  .btn-outline-secondary {
+    @include link-decoration;
+
+    background-color: transparent;
+  }
+
+  .table {
+    text-align: center;
+
+    .thead-dark th {
+      background-color: $dark;
+    }
+
+    thead th {
+      white-space: nowrap;
+    }
+  }
+
+  .list {
+    margin-top: 12px;
+
+    thead {
+      th:first-child {
+        width: 50px;
+      }
+    }
+
+    tbody tr {
+      td:nth-child(2) {
+        text-align: left;
+        padding-left: 2vw;
+      }
+
+      td:nth-last-child(-n + 2) {
+        position: relative;
+        width: 50px;
+
+        a {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          right: 0;
+          left: 0;
+
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          @include link-decoration;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
+
+.footer {
+  min-height: 80px;
+  text-align: center;
+
+  #author {
+    display: inline-block;
+  }
+
+  a {
+    @include link-decoration;
+
+    font-size: 16px;
+    font-style: italic;
+  }
+
+  p {
+    margin: 5px 0;
+  }
+}
