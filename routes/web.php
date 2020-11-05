@@ -17,5 +17,5 @@ use App\Http\Controllers\PageController;
 Route::get('/', [PageController::class, 'index'])
     ->name('home');
 
-Route::resource('/departments', 'DepartmentController');
-Route::resource('/staff', 'EmployeeController');
+Route::resource('departments', 'App\Http\Controllers\DepartmentController');
+Route::resource('staff', 'App\Http\Controllers\EmployeeController');
