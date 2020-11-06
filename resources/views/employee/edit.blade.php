@@ -13,6 +13,9 @@
                     'url' => route('staff.update', $employee),
                     'method' => 'PATCH',
                     'class' => 'form-staff col-md-7 col-lg-6',
+                    'role' => 'form',
+                    'novalidate',
+                    'autocomplete' => 'off'
                 ]) }}
             @include('employee.form')
 
