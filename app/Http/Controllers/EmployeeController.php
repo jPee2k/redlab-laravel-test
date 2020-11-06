@@ -45,7 +45,7 @@ class EmployeeController extends Controller
         $employee = new Employee();
         $employee->fill($data);
         // todo after the departments are created
-        // $employee->saveDepartments($request->get('departments'));
+        // $employee->setDepartments($request->get('departments'));
         $employee->save();
 
         $request->session()->flash('success', 'Сотрудник успешно добавлен');
@@ -70,9 +70,11 @@ class EmployeeController extends Controller
      * @param  \App\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function edit(Employee $employee)
+    public function edit($id)
     {
-        //
+        $employee = Employee::findOrFail($id);
+
+        return view('employee.edit', compact('employee'));
     }
 
     /**
@@ -82,9 +84,19 @@ class EmployeeController extends Controller
      * @param  \App\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Employee $employee)
+    public function update(StoreEmployee $request, $id)
     {
-        //
+        $employee = Employee::findOrFail($id);
+        $data = $request->validated();
+
+        $employee->fill($data);
+        // todo after the departments are created
+        // $employee->setDepartments($request->get('departments'));
+        $employee->save();
+
+        $request->session()->flash('success', 'Данные о сотруднике успешно обновлены');
+
+        return redirect()->route('staff.index');
     }
 
     /**
@@ -93,8 +105,15 @@ class EmployeeController extends Controller
      * @param  \App\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Employee $employee)
+    public function destroy($id)
     {
-        //
+        $employee = Employee::find($id);
+
+        // todo -> can't be deleted, if belongs to department
+        if ($employee) {
+            $employee->delete();
+        }
+
+        return redirect()->route('staff.index');
     }
 }

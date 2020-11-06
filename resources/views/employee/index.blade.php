@@ -33,9 +33,13 @@
                                 <td>{{ $employee->salary }}</td>
                                 <!-- todo foreach->relationships->department -->
                                 <td>Отдел закупок,<br>Отдел продаж</td>
-                                <!-- todo link -->
-                                <td><a href="edit.html"><i class="fas fa-edit"></i></a></td>
-                                <td><a href="#"><i class="far fa-minus-square"></a></i></td>
+                                <td><a href="{{ route('staff.edit', $employee) }}"><i class="fas fa-edit"></i></a></td>
+                                <td>
+                                    <a href="{{ route('staff.destroy', $employee) }}" data-confirm="Вы уверены?"
+                                        data-method="delete" rel="nofollow">
+                                        <i class="far fa-minus-square"></i>
+                                    </a>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
