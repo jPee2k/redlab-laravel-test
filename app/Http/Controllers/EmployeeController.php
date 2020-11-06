@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Employee;
+use App\Http\Requests\StoreEmployee;
 use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
@@ -26,7 +27,9 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        //
+        $employee = new Employee();
+
+        return view('employee.create', compact('employee'));
     }
 
     /**
@@ -35,9 +38,19 @@ class EmployeeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreEmployee $request)
     {
-        //
+        $data = $request->validated();
+
+        $employee = new Employee();
+        $employee->fill($data);
+        // todo after the departments are created
+        // $employee->saveDepartments($request->get('departments'));
+        $employee->save();
+
+        $request->session()->flash('success', 'Сотрудник успешно добавлен');
+
+        return redirect()->route('staff.index');
     }
 
     /**

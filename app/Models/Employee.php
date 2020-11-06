@@ -10,6 +10,7 @@ class Employee extends Model
     use HasFactory;
 
     protected $table = 'staff';
+    protected $fillable = ['first_name', 'last_name', 'patronymic', 'gender', 'salary'];
 
     public function departments()
     {

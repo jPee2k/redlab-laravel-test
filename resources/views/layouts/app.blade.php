@@ -40,8 +40,7 @@
                                 class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <!-- todo link -->
-                        <a class="nav-link" href="pages/staff/index.html">Наши сотрудники</a>
+                        <a class="nav-link" href={{ route('staff.index') }}>Наши сотрудники</a>
                     </li>
                     <li class="nav-item">
                         <!-- todo link -->

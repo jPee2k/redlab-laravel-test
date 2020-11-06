@@ -6,9 +6,9 @@
     <main class="main-content row">
         <section class="col-12 mx-auto">
             <h1 class="title mt-4 h2">Список сотрудников</h1>
+            @include('inc.success')
 
-            <!-- todo link -->
-            <a href="create.html" role="button" class="btn btn-outline-secondary">Добавить сотрудника</a>
+            <a href="{{ route('staff.create') }}" role="button" class="btn btn-outline-secondary">Добавить сотрудника</a>
 
             <div class="list staff-list table-responsive rounded">
                 <table class="table table-striped table-bordered">
@@ -26,7 +26,9 @@
                         @foreach ($staff as $employee)
                             <tr>
                                 <th scope="row">{{ $employee->id }}</th>
-                                <td>{{ $employee->last_name }} {{ $employee->first_name }} {{ $employee->patronymic ?? '' }}</td>
+                                <td>
+                                    {{ $employee->last_name }} {{ $employee->first_name }} {{ $employee->patronymic ?? '' }}
+                                </td>
                                 <td>{{ $employee->gender }}</td>
                                 <td>{{ $employee->salary }}</td>
                                 <!-- todo foreach->relationships->department -->
