@@ -52,7 +52,7 @@
                     </tbody>
                 </table>
             </div>
-
+            <!-- todo->repair frontend -->
             {{ $staff->links() }}
         </section>
     </main>

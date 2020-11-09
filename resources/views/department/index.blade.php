@@ -6,6 +6,7 @@
     <main class="main-content row">
         <section class="col-12 mx-auto">
             <h1 class="title mt-4 h2">Список отделов</h1>
+            @include('inc.success')
 
             <!-- todo link -->
             <a href="create.html" role="button" class="btn btn-outline-secondary">Добавить отдел</a>
@@ -27,8 +28,13 @@
                                 <th scope="row">{{ $department->id }}</th>
                                 <td>{{ $department->department_name }}</td>
                                 <td>{{ $department->staff()->count() }}</td>
-                                <!-- maximum salary among departments (among employees of one department???)-->
-                                <td>{{ $department->staff()->max('salary') }}</td>
+                                <td>
+                                    <!-- todo maximum salary among employees of one department -->
+
+                                    <!-- maximum salary among departments -->
+                                    {{ $department->staff()->max('salary') }}
+                                </td>
+
                                 <!-- todo links -->
                                 <td><a href="edit.html"><i class="fas fa-edit"></i></a></td>
                                 <td><a href="#"><i class="far fa-minus-square"></a></i></td>
@@ -37,6 +43,7 @@
                     </tbody>
                 </table>
             </div>
+            <!-- todo->repair frontend -->
             {{ $departments->links() }}
         </section>
     </main>

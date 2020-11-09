@@ -24,6 +24,7 @@ class StoreEmployee extends FormRequest
     public function rules()
     {
         return [
+            // todo first_name & last_name -> regex: alpha - '
             'first_name' => 'required|min:3|max:255|alpha',
             'last_name' => 'required|min:3|max:255|alpha',
             'patronymic' => 'nullable|min:3|max:255|alpha',
