@@ -62,16 +62,5 @@
 
 <div class="form-group">
     {{ Form::label('departments', 'Подразделения') }}
-    <!-- todo department->relationships->all -->
-    {{ Form::select(
-        'departments[]',
-        [
-            '1' => 'Отдел закупок',
-            '2' => 'Отдел продаж',
-            '3' => 'PR-отдел',
-            '4' => 'Отдел разработки',
-        ],
-        null,
-        ['class' => 'form-control', 'multiple', 'id' => 'departments'],
-    ) }}
+    {{ Form::select('departments[]', $departments, null, ['class' => 'form-control', 'multiple', 'id' => 'departments']) }}
 </div>

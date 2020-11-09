@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Employee;
+use App\Models\Department;
 use App\Http\Requests\StoreEmployee;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $staff = Employee::paginate();
+        $staff = Employee::orderBy('updated_at', 'desc')->paginate();
 
         return view('employee.index', compact('staff'));
     }
@@ -28,8 +29,9 @@ class EmployeeController extends Controller
     public function create()
     {
         $employee = new Employee();
+        $departments = Department::all()->pluck('department_name', 'id');
 
-        return view('employee.create', compact('employee'));
+        return view('employee.create', compact('employee', 'departments'));
     }
 
     /**
@@ -44,9 +46,9 @@ class EmployeeController extends Controller
 
         $employee = new Employee();
         $employee->fill($data);
-        // todo after the departments are created
-        // $employee->setDepartments($request->get('departments'));
         $employee->save();
+        // add the ids of departments to the department_staff table
+        $employee->departments()->sync($request->get('departments'));
 
         $request->session()->flash('success', 'Сотрудник успешно добавлен');
 
@@ -73,8 +75,9 @@ class EmployeeController extends Controller
     public function edit($id)
     {
         $employee = Employee::findOrFail($id);
+        $departments = Department::all()->pluck('department_name', 'id');
 
-        return view('employee.edit', compact('employee'));
+        return view('employee.edit', compact('employee', 'departments'));
     }
 
     /**
@@ -90,8 +93,8 @@ class EmployeeController extends Controller
         $data = $request->validated();
 
         $employee->fill($data);
-        // todo after the departments are created
-        // $employee->setDepartments($request->get('departments'));
+        // add the ids of departments to the department_staff table
+        $employee->departments()->sync($request->get('departments'));
         $employee->save();
 
         $request->session()->flash('success', 'Данные о сотруднике успешно обновлены');
