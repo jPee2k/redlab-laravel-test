@@ -43,8 +43,7 @@
                         <a class="nav-link" href={{ route('staff.index') }}>Наши сотрудники</a>
                     </li>
                     <li class="nav-item">
-                        <!-- todo link -->
-                        <a class="nav-link" href="pages/department/index.html">Список отделов</a>
+                        <a class="nav-link" href="{{ route('departments.index') }}">Список отделов</a>
                     </li>
                 </ul>
             </div>
