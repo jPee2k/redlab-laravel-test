@@ -16,9 +16,9 @@ class CreateDepartmentStaffTable extends Migration
         Schema::create('department_staff', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('department_id');
-            $table->foreign('department_id')->references('id')->on('departments');
+            $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
             $table->bigInteger('employee_id');
-            $table->foreign('employee_id')->references('id')->on('staff');
+            $table->foreign('employee_id')->references('id')->on('staff')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -30,6 +30,11 @@ class CreateDepartmentStaffTable extends Migration
      */
     public function down()
     {
+        Schema::table('department_staff', function (Blueprint $table) {
+            $table->dropForeign('department_staff_department_id_foreign'); // ['department_id']
+            $table->dropForeign('department_staff_employee_id_foreign'); // ['employee_id']
+        });
+
         Schema::dropIfExists('department_staff');
     }
 }
