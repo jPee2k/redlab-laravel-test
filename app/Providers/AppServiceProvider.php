@@ -24,6 +24,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // Instead of the default Tailwind framework
         Paginator::useBootstrap();
     }
 }

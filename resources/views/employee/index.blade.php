@@ -44,7 +44,6 @@
                     </tbody>
                 </table>
             </div>
-            <!-- todo->repair frontend -->
             <div class="d-flex justify-content-center">
                 {{ $staff->links() }}
             </div>

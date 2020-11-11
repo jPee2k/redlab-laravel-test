@@ -118,3 +118,19 @@ body {
     margin: 5px 0;
   }
 }
+
+.page-item.active .page-link {
+  color: $red;
+  background-color: $dark;
+  border-color: rgb(49, 49, 49);
+}
+
+.page-link {
+  color: $dark;
+}
+
+.page-link:hover {
+  color: rgb(49, 49, 49);
+  background-color: #bbbbbb;
+  border-color: #bbbbbb;
+}

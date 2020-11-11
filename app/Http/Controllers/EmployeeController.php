@@ -17,7 +17,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $staff = Employee::orderBy('updated_at', 'desc')->paginate(2);
+        $staff = Employee::orderBy('updated_at', 'desc')->paginate();
 
         return view('employee.index', compact('staff'));
     }
@@ -53,7 +53,7 @@ class EmployeeController extends Controller
 
         // add the ids of departments to the department_staff table
         $employee->departments()->sync($request->get('departments'));
-        
+
         return redirect()->route('staff.index')->with('success', 'Сотрудник успешно добавлен');
     }
 
