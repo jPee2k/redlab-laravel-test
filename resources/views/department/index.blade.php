@@ -8,8 +8,7 @@
             <h1 class="title mt-4 h2">Список отделов</h1>
             @include('inc.success')
 
-            <!-- todo link -->
-            <a href="create.html" role="button" class="btn btn-outline-secondary">Добавить отдел</a>
+            <a href="{{ route('departments.create') }}" role="button" class="btn btn-outline-secondary">Добавить отдел</a>
 
             <div class="list department-list table-responsive rounded">
                 <table class="table table-striped table-bordered">
@@ -43,8 +42,9 @@
                     </tbody>
                 </table>
             </div>
-            <!-- todo->repair frontend -->
-            {{ $departments->links() }}
+            <div class="d-flex justify-content-center">
+                {{ $departments->links() }}
+            </div>
         </section>
     </main>
 @endsection

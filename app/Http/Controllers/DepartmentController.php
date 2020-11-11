@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Department;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreDepartment;
 
 class DepartmentController extends Controller
 {
@@ -26,7 +27,9 @@ class DepartmentController extends Controller
      */
     public function create()
     {
-        //
+        $department = new Department();
+
+        return view('department.create', compact('department'));
     }
 
     /**
@@ -35,9 +38,12 @@ class DepartmentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreDepartment $request)
     {
-        //
+        Department::create($request->validated());
+
+        return redirect()->route('departments.index')
+            ->with('success', 'Отдел успешно добавлен');
     }
 
     /**
