@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Employee;
 use App\Models\Department;
+use Illuminate\Support\Str;
 use App\Http\Requests\StoreEmployee;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $staff = Employee::orderBy('updated_at', 'desc')->paginate();
+        $staff = Employee::orderBy('updated_at', 'desc')->paginate(2);
 
         return view('employee.index', compact('staff'));
     }
@@ -46,13 +47,14 @@ class EmployeeController extends Controller
 
         $employee = new Employee();
         $employee->fill($data);
+        // prepare name before saving to DB
+        // $employee->first_name = Str::title($request->input('first_name'));
         $employee->save();
+
         // add the ids of departments to the department_staff table
         $employee->departments()->sync($request->get('departments'));
-
-        $request->session()->flash('success', 'Сотрудник успешно добавлен');
-
-        return redirect()->route('staff.index');
+        
+        return redirect()->route('staff.index')->with('success', 'Сотрудник успешно добавлен');
     }
 
     /**
@@ -93,13 +95,10 @@ class EmployeeController extends Controller
         $data = $request->validated();
 
         $employee->fill($data);
-        // add the ids of departments to the department_staff table
         $employee->departments()->sync($request->get('departments'));
         $employee->save();
 
-        $request->session()->flash('success', 'Данные о сотруднике успешно обновлены');
-
-        return redirect()->route('staff.index');
+        return redirect()->route('staff.index')->with('success', 'Данные о сотруднике успешно обновлены');
     }
 
     /**
@@ -112,11 +111,10 @@ class EmployeeController extends Controller
     {
         $employee = Employee::find($id);
 
-        // todo -> can't be deleted, if belongs to department
         if ($employee) {
             $employee->delete();
         }
 
-        return redirect()->route('staff.index');
+        return redirect()->route('staff.index')->with('success', 'Пользователь успешно удален');
     }
 }

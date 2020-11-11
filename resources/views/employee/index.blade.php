@@ -27,19 +27,11 @@
                             <tr>
                                 <th scope="row">{{ $employee->id }}</th>
                                 <td>
-                                    {{ $employee->last_name }} {{ $employee->first_name }} {{ $employee->patronymic ?? '' }}
+                                    {{ $employee->last_name }} {{ $employee->first_name }} {{ $employee->patronymic }}
                                 </td>
                                 <td>{{ $employee->gender }}</td>
                                 <td>{{ $employee->salary }}</td>
-                                <td>
-                                    @foreach ($employee->departments as $department)
-                                        @if (!$loop->last)
-                                            {{ $department->department_name . ',' }}<br />
-                                        @else
-                                            {{ $department->department_name }}
-                                        @endif
-                                    @endforeach
-                                </td>
+                                <td>{{ $employee->departments->pluck('department_name')->implode(', ') }}</td>
                                 <td><a href="{{ route('staff.edit', $employee) }}"><i class="fas fa-edit"></i></a></td>
                                 <td>
                                     <a href="{{ route('staff.destroy', $employee) }}" data-confirm="Вы уверены?"
@@ -53,7 +45,9 @@
                 </table>
             </div>
             <!-- todo->repair frontend -->
-            {{ $staff->links() }}
+            <div class="d-flex justify-content-center">
+                {{ $staff->links() }}
+            </div>
         </section>
     </main>
 @endsection
