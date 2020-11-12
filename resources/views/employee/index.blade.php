@@ -34,6 +34,7 @@
                                 <td>{{ $employee->departments->pluck('department_name')->implode(', ') }}</td>
                                 <td><a href="{{ route('staff.edit', $employee) }}"><i class="fas fa-edit"></i></a></td>
                                 <td>
+                                    <!-- form-deleting -> @rails/ujs -->
                                     <a href="{{ route('staff.destroy', $employee) }}" data-confirm="Вы уверены?"
                                         data-method="delete" rel="nofollow">
                                         <i class="far fa-minus-square"></i>

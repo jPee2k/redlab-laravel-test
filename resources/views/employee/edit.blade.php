@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
-@section('title', 'Редактировать сотрудника')
+@section('title', 'Редактировать')
 
 @section('content')
     <main class="main-content row">
         <section class="col-12 mx-auto">
-            <h1 class="title mt-4 h2">Редактировать сотрудника</h1>
+            <h1 class="title mt-4 h2">Редактировать данные сотрудника</h1>
 
             @include('inc.errors')
 
@@ -19,7 +19,7 @@
                 ]) }}
             @include('employee.form')
 
-            {{ Form::submit('Обновить', [
+            {{ Form::submit('Соранить', [
                     'class' => 'btn btn-outline-secondary',
                     'role' => 'button',
                     'data-disable-with' => 'Сохраняем',

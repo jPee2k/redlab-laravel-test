@@ -54,7 +54,8 @@ class EmployeeController extends Controller
         // add the ids of departments to the department_staff table
         $employee->departments()->sync($request->get('departments'));
 
-        return redirect()->route('staff.index')->with('success', 'Сотрудник успешно добавлен');
+        return redirect()->route('staff.index')
+            ->with('success', 'Сотрудник успешно добавлен');
     }
 
     /**
@@ -98,7 +99,8 @@ class EmployeeController extends Controller
         $employee->departments()->sync($request->get('departments'));
         $employee->save();
 
-        return redirect()->route('staff.index')->with('success', 'Данные о сотруднике успешно обновлены');
+        return redirect()->route('staff.index')
+            ->with('success', 'Данные о сотруднике успешно обновлены');
     }
 
     /**
@@ -115,6 +117,7 @@ class EmployeeController extends Controller
             $employee->delete();
         }
 
-        return redirect()->route('staff.index')->with('success', 'Пользователь успешно удален');
+        return redirect()->route('staff.index')
+            ->with('success', 'Пользователь успешно удален');
     }
 }
