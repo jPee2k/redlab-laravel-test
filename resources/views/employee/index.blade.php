@@ -27,7 +27,9 @@
                             <tr>
                                 <th scope="row">{{ $employee->id }}</th>
                                 <td>
-                                    {{ $employee->last_name }} {{ $employee->first_name }} {{ $employee->patronymic }}
+                                    {{ $employee->last_name }}
+                                    {{ $employee->first_name }}
+                                    {{ $employee->patronymic }}
                                 </td>
                                 <td>{{ $employee->gender }}</td>
                                 <td>{{ $employee->salary }}</td>
