@@ -65,7 +65,7 @@ class DepartmentController extends Controller
      */
     public function edit(Department $department)
     {
-        //
+        return view('department.edit', compact('department'));
     }
 
     /**
@@ -75,9 +75,15 @@ class DepartmentController extends Controller
      * @param  \App\Models\Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Department $department)
+    public function update(StoreDepartment $request, Department $department)
     {
-        //
+        $data = $request->validated();
+
+        $department->fill($data);
+        $department->save();
+
+        return redirect()->route('departments.index')
+            ->with('success', 'Данные отдела успешно обновлены');
     }
 
     /**
@@ -86,8 +92,16 @@ class DepartmentController extends Controller
      * @param  \App\Models\Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Department $department)
+    public function destroy(Department $department, Request $request)
     {
-        //
+        if ($department && $department->staff->isEmpty()) {
+            $department->delete();
+
+            $request->session()->flash('success', 'Отдел успешно удален');
+        } else {
+            $request->session()->flash('warning', 'Невозможно удалить отдел. В нем работает персонал!');
+        }
+
+        return redirect()->route('departments.index');
     }
 }

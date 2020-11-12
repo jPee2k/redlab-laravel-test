@@ -7,6 +7,7 @@
         <section class="col-12 mx-auto">
             <h1 class="title mt-4 h2">Список отделов</h1>
             @include('inc.success')
+            @include('inc.warning')
 
             <a href="{{ route('departments.create') }}" role="button" class="btn btn-outline-secondary">Добавить отдел</a>
 
@@ -33,10 +34,16 @@
                                     <!-- maximum salary among departments -->
                                     {{ $department->staff()->max('salary') }}
                                 </td>
-
-                                <!-- todo links -->
-                                <td><a href="edit.html"><i class="fas fa-edit"></i></a></td>
-                                <td><a href="#"><i class="far fa-minus-square"></a></i></td>
+                                <td>
+                                    <a href="{{ route('departments.edit', $department) }}"><i class="fas fa-edit"></i></a>
+                                </td>
+                                <td>
+                                    <!-- form-deleting -> @rails/ujs -->
+                                    <a href="{{ route('departments.destroy', $department) }}" data-confirm="Вы уверены?"
+                                        data-method="delete" rel="nofollow">
+                                        <i class="far fa-minus-square"></i>
+                                    </a>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
