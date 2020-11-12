@@ -30,7 +30,7 @@ class EmployeeController extends Controller
     public function create()
     {
         $employee = new Employee();
-        $departments = Department::all()->pluck('department_name', 'id');
+        $departments = Department::all()->pluck('name', 'id');
 
         return view('employee.create', compact('employee', 'departments'));
     }
@@ -78,7 +78,7 @@ class EmployeeController extends Controller
     public function edit($id)
     {
         $employee = Employee::findOrFail($id);
-        $departments = Department::all()->pluck('department_name', 'id');
+        $departments = Department::all()->pluck('name', 'id');
 
         return view('employee.edit', compact('employee', 'departments'));
     }

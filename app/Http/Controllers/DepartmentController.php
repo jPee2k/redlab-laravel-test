@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Department;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreDepartment;
+use Illuminate\Support\Facades\DB;
 
 class DepartmentController extends Controller
 {

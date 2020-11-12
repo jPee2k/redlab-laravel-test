@@ -1,6 +1,6 @@
 <div class="form-group">
-    {{ Form::label('department_name', 'Название') }}
-    {{ Form::text('department_name', $department->department_name, [
+    {{ Form::label('name', 'Название') }}
+    {{ Form::text('name', $department->name, [
         'class' => 'form-control',
         'aria-describedby' => 'department-error',
         'placeholder' => 'Введите уникальное название отдела',

@@ -26,10 +26,10 @@
                         @foreach ($departments as $department)
                             <tr>
                                 <th scope="row">{{ $department->id }}</th>
-                                <td>{{ $department->department_name }}</td>
+                                <td>{{ $department->name }}</td>
                                 <td>{{ $department->staff()->count() }}</td>
                                 <td>
-                                    <!-- todo maximum salary among employees of one department -->
+                                    <!-- ?? todo maximum salary among employees of one department ?? -->
 
                                     <!-- maximum salary among departments -->
                                     {{ $department->staff()->max('salary') }}

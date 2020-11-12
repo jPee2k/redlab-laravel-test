@@ -98,6 +98,11 @@ body {
   transition: 0.25s;
 }
 
+.main-content .main-table tbody tr th {
+  padding-left: 2vw;
+  text-align: left;
+}
+
 .footer {
   min-height: 80px;
   text-align: center;

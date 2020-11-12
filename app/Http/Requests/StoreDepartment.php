@@ -25,8 +25,8 @@ class StoreDepartment extends FormRequest
     public function rules()
     {
         return [
-            'department_name' => [
-                Rule::unique('departments', 'department_name')->ignore($this->department),
+            'name' => [
+                Rule::unique('departments', 'name')->ignore($this->department),
                 'required',
                 'min:3',
                 'max:64',

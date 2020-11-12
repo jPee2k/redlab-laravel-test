@@ -33,7 +33,7 @@
                                 </td>
                                 <td>{{ $employee->gender }}</td>
                                 <td>{{ $employee->salary }}</td>
-                                <td>{{ $employee->departments->pluck('department_name')->implode(', ') }}</td>
+                                <td>{{ $employee->departments->pluck('name')->implode(', ') }}</td>
                                 <td><a href="{{ route('staff.edit', $employee) }}"><i class="fas fa-edit"></i></a></td>
                                 <td>
                                     <!-- form-deleting -> @rails/ujs -->
