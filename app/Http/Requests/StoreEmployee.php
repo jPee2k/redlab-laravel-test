@@ -29,13 +29,13 @@ class StoreEmployee extends FormRequest
                 'min:2',
                 'max:255',
                 // Иван, Саша-Барон, Ахмед-шах
-                'regex:/^(?!-)(?!.*--)([A-ZА-ЯЁ]{1}[a-zа-я\-]+)+(?<!-)$/mu'
+                'regex:/^(?!-)(?!.*--)([A-ZА-ЯЁ]{1}[a-zа-яё\-]+)+(?<!-)$/mu'
             ],
             'last_name' => [
                 'required',
                 'min:2',
                 'max:255',
-                'regex:/^(?!-)(?!.*--)([A-ZА-ЯЁ]{1}[a-zа-я\-]+)+(?<!-)$/mu'
+                'regex:/^(?!-)(?!.*--)([A-ZА-ЯЁ]{1}[a-zа-яё\-]+)+(?<!-)$/mu'
             ],
             // 'first_name' => 'required|min:2|max:255|alpha',
             // 'last_name' => 'required|min:2|max:255|alpha',
