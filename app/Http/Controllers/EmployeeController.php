@@ -17,7 +17,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $staff = Employee::orderBy('updated_at', 'desc')->paginate();
+        $staff = Employee::orderBy('updated_at', 'desc')->paginate(7);
 
         return view('employee.index', compact('staff'));
     }
@@ -30,7 +30,7 @@ class EmployeeController extends Controller
     public function create()
     {
         $employee = new Employee();
-        $departments = Department::all()->pluck('name', 'id');
+        $departments = Department::pluck('name', 'id');
 
         return view('employee.create', compact('employee', 'departments'));
     }
@@ -78,7 +78,7 @@ class EmployeeController extends Controller
     public function edit($id)
     {
         $employee = Employee::findOrFail($id);
-        $departments = Department::all()->pluck('name', 'id');
+        $departments = Department::pluck('name', 'id');
 
         return view('employee.edit', compact('employee', 'departments'));
     }
@@ -97,6 +97,7 @@ class EmployeeController extends Controller
 
         $employee->fill($data);
         $employee->departments()->sync($request->get('departments'));
+        $employee->updated_at = now();
         $employee->save();
 
         return redirect()->route('staff.index')
