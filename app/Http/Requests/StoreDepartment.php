@@ -30,7 +30,9 @@ class StoreDepartment extends FormRequest
                 'required',
                 'min:3',
                 'max:64',
-                'regex:/^[A-ZА-ЯЁ]+[a-zа-я0-9 -]+$/mu'
+                // regex:/^[A-ZА-ЯЁ]+[a-zа-я0-9 -]+$/mu
+                // МКК ОблРечCиб-М
+                'regex:/^(?!-)(?!.*--)([A-ZА-ЯЁ]{1}[A-Za-zА-ЯЁа-яё0-9\- ]+)+(?<!-)(?<! )$/mu'
             ]
         ];
     }
