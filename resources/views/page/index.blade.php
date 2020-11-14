@@ -26,7 +26,7 @@
                                 </th>
                                 @foreach ($departments as $department)
                                     @if ($employee->departments->contains($department))
-                                        <td><i class="far fa-check-circle"></i></td>
+                                        <td class="align-middle"><i class="far fa-check-circle"></i></td>
                                     @else
                                         <td></td>
                                     @endif
