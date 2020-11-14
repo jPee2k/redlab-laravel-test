@@ -18,8 +18,8 @@ class EmployeeSeeder extends Seeder
     {
         Employee::factory()->count(25)->create()
             ->each(function ($employee) {
-                $department = Department::find(rand(1, 5));
-                $employee->departments()->save($department);
+                $departments = Department::inRandomOrder()->take(mt_rand(1, random_int(1, 3)))->get();
+                $employee->departments()->sync($departments);
             });
     }
 }

@@ -24,8 +24,9 @@ class EmployeeFactory extends Factory
         return [
             'first_name' => $this->faker->firstName,
             'last_name' => $this->faker->lastName,
+            'patronymic' => $this->faker->middleName,
             'gender' => $this->faker->randomElement(['Мужской', 'Женский']),
-            'salary' => $this->faker->randomFloat(2, 8000, 32000),
+            'salary' => $this->faker->randomFloat(2, 5000, 17000),
         ];
     }
 }
