@@ -97,6 +97,14 @@ body {
       }
     }
   }
+
+  .main-table {
+    tbody tr th {
+      padding-left: 2vw; 
+
+      text-align: left;
+    }
+  }
 }
 
 .footer {
