@@ -1,23 +1,31 @@
 <div class="form-group">
-    {{ Form::label('first_name', 'Имя') }}
+    {{ Form::label('first_name', 'Имя') }} <i class="text-danger">*</i>
     {{ Form::text('first_name', $employee->first_name, [
         'class' => 'form-control',
         'aria-describedby' => 'name-error',
         'placeholder' => 'Введите имя',
         'required',
     ]) }}
-    <small id="name-error" class="form-text text-muted"></small>
+    @if ($errors->has('first_name'))
+        <small id="name-error" class="form-text text-danger">
+            {{ $errors->first('first_name') }}
+        </small>
+    @endif
 </div>
 
 <div class="form-group">
-    {{ Form::label('last_name', 'Фамилия') }}
+    {{ Form::label('last_name', 'Фамилия') }} <i class="text-danger">*</i>
     {{ Form::text('last_name', $employee->last_name, [
         'class' => 'form-control',
         'aria-describedby' => 'last-name-error',
         'placeholder' => 'Введите фамилию',
         'required',
     ]) }}
-    <small id="last-name-error" class="form-text text-muted"></small>
+    @if ($errors->has('last_name'))
+        <small id="last-name-error" class="form-text text-danger">
+            {{ $errors->first('last_name') }}
+        </small>
+    @endif
 </div>
 
 <div class="form-group">
@@ -27,7 +35,11 @@
         'aria-describedby' => 'patronymic-error',
         'placeholder' => 'Введите отчество',
     ]) }}
-    <small id="patronymic-error" class="form-text text-muted"></small>
+    @if ($errors->has('patronymic'))
+        <small id="patronymic-error" class="form-text text-danger">
+            {{ $errors->first('patronymic') }}
+        </small>
+    @endif
 </div>
 
 <div class="form-group">
@@ -37,7 +49,11 @@
         'aria-describedby' => 'salary-error',
         'placeholder' => 'Введите сумму, грн',
     ]) }}
-    <small id="salary-error" class="form-text text-muted"></small>
+    @if ($errors->has('salary'))
+        <small id="salary-error" class="form-text text-danger">
+            {{ $errors->first('salary') }}
+        </small>
+    @endif
 </div>
 
 <div class="form-group">
@@ -61,6 +77,16 @@
 </div>
 
 <div class="form-group">
-    {{ Form::label('departments', 'Подразделения') }}
-    {{ Form::select('departments[]', $departments, null, ['class' => 'form-control', 'multiple', 'id' => 'departments']) }}
+    {{ Form::label('departments', 'Отделы') }} <i class="text-danger">*</i>
+    {{ Form::select('departments[]', $departments, null, [
+        'class' => 'form-control',
+        'multiple',
+        'id' => 'departments',
+        'aria-describedby' => 'departments-error',
+    ]) }}
+    @if ($errors->has('departments'))
+        <small id="departments-error" class="form-text text-danger">
+            {{ $errors->first('departments') }}
+        </small>
+    @endif
 </div>

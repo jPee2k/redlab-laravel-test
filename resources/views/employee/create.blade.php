@@ -6,8 +6,6 @@
     <main class="main-content row">
         <section class="col-12 mx-auto">
             <h1 class="title mt-4 h2">Добавить нового сотрудника</h1>
-
-            @include('inc.errors')
             
             {{ Form::model($employee, [
                     'url' => route('staff.store'),
