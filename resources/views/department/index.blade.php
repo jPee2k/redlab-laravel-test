@@ -27,11 +27,11 @@
                             <tr>
                                 <th scope="row">{{ $department->id }}</th>
                                 <td>{{ $department->name }}</td>
-                                <td>{{ $department->staff()->count() }}</td>
+                                <td>{{ $department->staff->count() }}</td>
                                 <td>
-                                    <!-- ?? todo maximum salary among employees of one department ?? -->
+                                    <!-- ?? TODO ?? maximum salary among employees who work in only one department ?? -->
 
-                                    <!-- maximum salary among departments -->
+                                    <!-- maximum salary in the department -->
                                     {{ $department->staff()->max('salary') }}
                                 </td>
                                 <td>
