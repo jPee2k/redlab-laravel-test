@@ -1,7 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\DepartmentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,8 +17,9 @@ use App\Http\Controllers\PageController;
 |
 */
 
-Route::get('/', [PageController::class, 'index'])
-    ->name('home');
+Route::get('/', [PageController::class, 'index'])->name('home');
 
-Route::resource('departments', 'App\Http\Controllers\DepartmentController');
-Route::resource('staff', 'App\Http\Controllers\EmployeeController');
+Route::resources([
+    'departments' => DepartmentController::class,
+    'staff' => EmployeeController::class
+]);
