@@ -29,10 +29,11 @@
                                 <td>{{ $department->name }}</td>
                                 <td>{{ $department->staff->count() }}</td>
                                 <td>
-                                    <!-- ?? TODO ?? maximum salary among employees who work in only one department ?? -->
+                                    <!-- maximum salary among employees who work in only one department -->
+                                    {{ $department->staff()->whereNotIn('employee_id', $staffIDs)->max('salary') }}
 
                                     <!-- maximum salary in the department -->
-                                    {{ $department->staff()->max('salary') }}
+                                    {{-- $department->staff()->max('salary') --}}
                                 </td>
                                 <td>
                                     <a href="{{ route('departments.edit', $department) }}"><i class="fas fa-edit"></i></a>

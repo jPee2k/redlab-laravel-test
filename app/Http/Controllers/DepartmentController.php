@@ -18,7 +18,14 @@ class DepartmentController extends Controller
     {
         $departments = Department::orderBy('id')->paginate();
 
-        return view('department.index', compact('departments'));
+        // employees who work in more than one department
+        $staffIDs = DB::table('department_staff')
+            ->distinct('employee_id')
+            ->groupBy('employee_id')
+            ->havingRaw('count(department_id) > ?', [1])
+            ->select('employee_id');
+
+        return view('department.index', compact('departments', 'staffIDs'));
     }
 
     /**
