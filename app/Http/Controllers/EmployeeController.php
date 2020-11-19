@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Employee;
 use App\Models\Department;
 use App\Http\Requests\StoreEmployee;
-use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
 {
@@ -16,7 +15,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $staff = Employee::orderBy('id', 'desc')->paginate(7);
+        $staff = Employee::with('departments')->orderBy('id', 'desc')->paginate(7);
 
         return view('employee.index', compact('staff'));
     }
@@ -28,7 +27,7 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        $employee = new Employee();
+        $employee = Employee::make();
         $departments = Department::pluck('name', 'id');
 
         return view('employee.create', compact('employee', 'departments'));
@@ -42,11 +41,7 @@ class EmployeeController extends Controller
      */
     public function store(StoreEmployee $request)
     {
-        $data = $request->validated();
-
-        $employee = new Employee();
-        $employee->fill($data);
-        $employee->save();
+        $employee = Employee::create($request->validated());
 
         // add the ids of departments to the department_staff table
         $employee->departments()->attach($request->get('departments'));
@@ -90,12 +85,9 @@ class EmployeeController extends Controller
     public function update(StoreEmployee $request, $id)
     {
         $employee = Employee::findOrFail($id);
-        $data = $request->validated();
 
-        $employee->fill($data);
+        $employee->update($request->validated());
         $employee->departments()->sync($request->get('departments'));
-        $employee->updated_at = now();
-        $employee->save();
 
         return redirect()->route('staff.index')
             ->with('success', 'Данные о сотруднике успешно обновлены');

@@ -10,6 +10,7 @@ class Department extends Model
     use HasFactory;
 
     protected $fillable = ['name'];
+    protected $touches = ['employees'];
 
     public function staff()
     {
