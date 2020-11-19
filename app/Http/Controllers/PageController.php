@@ -11,7 +11,7 @@ class PageController extends Controller
     public function index()
     {
         $departments = Department::all();
-        $staff = Employee::orderBy('id')->paginate(7);
+        $staff = Employee::with('departments')->orderBy('id')->paginate(7);
 
         return view('page.index', compact('staff', 'departments'));
     }

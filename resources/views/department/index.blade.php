@@ -30,7 +30,7 @@
                                 <td>{{ $department->staff->count() }}</td>
                                 <td>
                                     <!-- maximum salary among employees who work in only one department -->
-                                    {{ $department->staff()->whereNotIn('employee_id', $staffIDs)->max('salary') }}
+                                    {{ $department->getMaxSalary() }}
 
                                     <!-- maximum salary in the department -->
                                     {{-- $department->staff()->max('salary') --}}

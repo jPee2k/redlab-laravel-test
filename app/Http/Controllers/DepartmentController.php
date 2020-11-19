@@ -15,12 +15,9 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        $departments = Department::with('staff')->orderBy('id')->paginate();
+        $departments = Department::with('staff')->orderBy('id')->paginate(7);
 
-        // employees who work in more than one department
-        $staffIDs = Department::getIDsForUniversalStaff();
-
-        return view('department.index', compact('departments', 'staffIDs'));
+        return view('department.index', compact('departments'));
     }
 
     /**

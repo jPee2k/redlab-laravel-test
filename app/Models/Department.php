@@ -11,7 +11,7 @@ class Department extends Model
     use HasFactory;
 
     protected $fillable = ['name'];
-    protected $touches = ['employees'];
+    protected $touches = ['employees']; // todo -> 'staff'; doesn't work with --seed
 
     public function staff()
     {
@@ -23,12 +23,18 @@ class Department extends Model
         );
     }
 
-    public static function getIDsForUniversalStaff()
+    public function getMaxSalary()
     {
-        return DB::table('department_staff')
-            ->distinct('employee_id')
-            ->groupBy('employee_id')
-            ->havingRaw('count(department_id) > ?', [1])
-            ->select('employee_id');
+        $ids = $this->getIDsForUniversalStaff();
+
+        return $this->staff()
+            ->whereNotIn('employee_id', $ids)
+            ->max('salary');
+    }
+
+    public function getIDsForUniversalStaff()
+    {
+        return DB::table('department_staff')->distinct('employee_id')->groupBy('employee_id')
+            ->havingRaw('count(department_id) > ?', [1])->select('employee_id');
     }
 }
