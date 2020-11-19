@@ -17,7 +17,7 @@
                 ]) }}
             @include('employee.form')
 
-            {{ Form::submit('Соранить', [
+            {{ Form::submit('Сохранить', [
                     'class' => 'btn btn-outline-secondary',
                     'role' => 'button',
                     'data-disable-with' => 'Сохраняем',
