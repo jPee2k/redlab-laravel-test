@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Department;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreDepartment;
-use Illuminate\Support\Facades\DB;
 
 class DepartmentController extends Controller
 {
@@ -16,14 +15,10 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        $departments = Department::orderBy('id')->paginate();
+        $departments = Department::with('staff')->orderBy('id')->paginate();
 
         // employees who work in more than one department
-        $staffIDs = DB::table('department_staff')
-            ->distinct('employee_id')
-            ->groupBy('employee_id')
-            ->havingRaw('count(department_id) > ?', [1])
-            ->select('employee_id');
+        $staffIDs = Department::getIDsForUniversalStaff();
 
         return view('department.index', compact('departments', 'staffIDs'));
     }
@@ -35,7 +30,7 @@ class DepartmentController extends Controller
      */
     public function create()
     {
-        $department = new Department();
+        $department = Department::make();
 
         return view('department.create', compact('department'));
     }
@@ -85,10 +80,7 @@ class DepartmentController extends Controller
      */
     public function update(StoreDepartment $request, Department $department)
     {
-        $data = $request->validated();
-
-        $department->fill($data);
-        $department->save();
+        $department->update($request->validated());
 
         return redirect()->route('departments.index')
             ->with('success', 'Данные отдела успешно обновлены');
