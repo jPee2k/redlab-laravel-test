@@ -12,15 +12,20 @@
 
 For Docker setup edit `docker-compose.yml`
 
-```
 **FROM**
+
+```
     db:
         volumes:
-            - "*/home/${USER}/projects/DB/mysql*:/var/lib/mysql"
+            - "/home/${USER}/projects/DB/mysql:/var/lib/mysql"
+```
+
 **ON**
+
+```
     db:
         volumes:
-            - "*/your/path/to/DBdir*:/var/lib/mysql"
+            - "/your/path/to/DBdir:/var/lib/mysql"
 ```
 
 ```sh
