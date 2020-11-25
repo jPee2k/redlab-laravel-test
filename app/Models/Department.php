@@ -11,7 +11,9 @@ class Department extends Model
     use HasFactory;
 
     protected $fillable = ['name'];
-    protected $touches = ['employees']; // todo -> 'staff'; doesn't work with --seed
+    // todo -> ['staff'];
+    // touches doesn't work with --seed
+    // protected $touches = ['employees'];
 
     public function staff()
     {
