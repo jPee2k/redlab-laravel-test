@@ -15,10 +15,8 @@ class CreateDepartmentStaffTable extends Migration
     {
         Schema::create('department_staff', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('department_id');
-            $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
-            $table->bigInteger('employee_id');
-            $table->foreign('employee_id')->references('id')->on('staff')->onDelete('cascade');
+            $table->foreignId('department_id')->constrained()->onDelete('cascade');
+            $table->foreignId('employee_id')->constrained('staff')->onDelete('cascade');
             $table->timestamps();
         });
     }
