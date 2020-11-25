@@ -12,7 +12,7 @@
 
 For Docker setup edit `docker-compose.yml`
 
-**FROM**
+*FROM*
 
 ```
     db:
@@ -20,7 +20,7 @@ For Docker setup edit `docker-compose.yml`
             - "/home/${USER}/projects/DB/mysql:/var/lib/mysql"
 ```
 
-**ON**
+*ON*
 
 ```
     db:
