@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+
+  db:
+    image: mysql
+    container_name: db
+    restart: always
+    tty: true
+    ports:
+      - '3306:3306'
+    environment:
+      MYSQL_DATABASE: redlabtest
+      MYSQL_ROOT_PASSWORD: redlabtest
+      SERVICE_NAME: docker-mysql
+    volumes:
+      - "/home/${USER}/projects/DB/mysql:/var/lib/mysql"
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: web
+    command: make start
+    restart: always
+    tty: true
+    environment: 
+      SERVICE_NAME: docker-web
+    ports:
+      - "8000:8000"
+    # env_file: '.env'
+    working_dir: /app
+    volumes:
+      - ".:/app"
+      - "/tmp:/tmp"
+    depends_on:
+      - db
+
+# volumes:
+  # dbdata:

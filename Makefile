@@ -6,7 +6,7 @@ setup:
 	composer install
 	cp -n .env.example .env || true
 	php artisan key:gen --ansi
-	make db-prepare
+	npm run dev
 
 db-prepare:
 	php artisan migrate --seed
@@ -44,8 +44,14 @@ compose-setup: compose-build
 compose-build:
 	docker-compose build
 
+compose-migrate:
+	docker-compose run web make db-prepare
+
+compose-refresh:
+	docker-compose run web make db-refresh
+
 compose-db:
-	docker-compose exec db psql -U postgres
+	docker-compose exec db mysql -uroot -p
 
 compose-down:
 	docker-compose down -v
