@@ -14,6 +14,12 @@ db-prepare:
 db-refresh:
 	php artisan migrate:refresh --seed
 
+clear:
+	php artisan route:clear
+	php artisan config:clear
+	php artisan cache:clear
+	php artisan debugbar:clear
+
 log:
 	tail -f storage/logs/laravel.log
 
