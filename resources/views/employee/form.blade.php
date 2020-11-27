@@ -42,7 +42,7 @@
 
 <div class="form-group">
     {{ Form::label('salary', 'Зарплата') }}
-    {{ Form::text('salary', $employee->salary, [
+    {{ Form::number('salary', $employee->salary, [
         'class' => 'form-control',
         'aria-describedby' => 'salary-error',
         'placeholder' => 'Введите сумму, грн',
