@@ -27,13 +27,13 @@
                             <tr>
                                 <th scope="row">{{ $department->id }}</th>
                                 <td>{{ $department->name }}</td>
-                                <td>{{ $department->staff->count() }}</td>
+                                <td>{{ $department->employees->count() }}</td>
                                 <td>
                                     <!-- maximum salary among employees who work in only one department -->
                                     {{ $department->getMaxSalary() }}
 
                                     <!-- maximum salary in the department -->
-                                    {{-- $department->staff()->max('salary') --}}
+                                    {{-- $department->employees()->max('salary') --}}
                                 </td>
                                 <td>
                                     <a href="{{ route('departments.edit', $department) }}"><i class="fas fa-edit"></i></a>

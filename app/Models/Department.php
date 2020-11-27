@@ -11,11 +11,9 @@ class Department extends Model
     use HasFactory;
 
     protected $fillable = ['name'];
-    // todo -> ['staff'];
-    // touches doesn't work with --seed
-    // protected $touches = ['employees'];
+    protected $touches = ['employees'];
 
-    public function staff()
+    public function employees()
     {
         return $this->belongsToMany(
             Employee::class,
@@ -29,7 +27,7 @@ class Department extends Model
     {
         $ids = $this->getIDsForUniversalStaff();
 
-        return $this->staff()
+        return $this->employees()
             ->whereNotIn('employee_id', $ids)
             ->max('salary');
     }

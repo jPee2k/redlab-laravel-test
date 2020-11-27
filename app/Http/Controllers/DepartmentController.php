@@ -15,7 +15,7 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        $departments = Department::with('staff')->orderBy('id')->paginate(7);
+        $departments = Department::with('employees')->orderBy('id')->paginate(7);
 
         return view('department.index', compact('departments'));
     }
@@ -91,7 +91,7 @@ class DepartmentController extends Controller
      */
     public function destroy(Department $department, Request $request)
     {
-        if ($department && $department->staff->isEmpty()) {
+        if ($department && $department->employees->isEmpty()) {
             $department->delete();
 
             $request->session()->flash('success', 'Отдел успешно удален');
