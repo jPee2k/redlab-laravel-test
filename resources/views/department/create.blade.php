@@ -11,7 +11,6 @@
                     'url' => route('departments.store'),
                     'class' => 'form-staff col-md-7 col-lg-6',
                     'role' => 'form',
-                    'novalidate',
                     'autocomplete' => 'off',
                 ]) }}
 

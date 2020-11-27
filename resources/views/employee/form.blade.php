@@ -4,7 +4,6 @@
         'class' => 'form-control',
         'aria-describedby' => 'name-error',
         'placeholder' => 'Введите имя',
-        'required',
     ]) }}
     @if ($errors->has('first_name'))
         <small id="name-error" class="form-text text-danger">
@@ -19,7 +18,6 @@
         'class' => 'form-control',
         'aria-describedby' => 'last-name-error',
         'placeholder' => 'Введите фамилию',
-        'required',
     ]) }}
     @if ($errors->has('last_name'))
         <small id="last-name-error" class="form-text text-danger">

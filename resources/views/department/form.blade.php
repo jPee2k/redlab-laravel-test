@@ -4,7 +4,6 @@
         'class' => 'form-control',
         'aria-describedby' => 'department-error',
         'placeholder' => 'Введите уникальное название отдела',
-        'required',
     ]) }}
     @if ($errors->has('name'))
         <small id="department-error" class="form-text text-danger">
