@@ -190,5 +190,8 @@ return [
         'time'                  => 'Время',
         'available'             => 'Доступно',
         'size'                  => 'Размер',
+        'salary'                => 'Зарплата',
+        'patronymic'            => 'Отчество',
+        'departments'           => 'Отделы',
     ],
 ];
