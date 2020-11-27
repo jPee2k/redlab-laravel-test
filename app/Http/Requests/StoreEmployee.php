@@ -41,7 +41,12 @@ class StoreEmployee extends FormRequest
             // 'last_name' => 'required|min:2|max:255|alpha',
             'patronymic' => 'nullable|min:4|max:255|alpha',
             'gender' => 'nullable',
-            'salary' => 'nullable|numeric|between:0,999999.99',
+            'salary' => [
+                'nullable',
+                'numeric',
+                'between:0,999999.99',
+                'regex:/^[\d\.]+$/m',
+            ],
             'departments' => 'required'
         ];
     }
@@ -69,6 +74,7 @@ class StoreEmployee extends FormRequest
             'patronymic.max' => 'Превышен лимит символов!',
 
             'salary.numeric' => 'Поле доступно только для ввода чисел!',
+            'salary.regex' => 'Десятичные числа пишутся через точку',
 
             'departments.required' => 'Сотрудник должен входить в состав хотя бы одного отдела!'
         ];

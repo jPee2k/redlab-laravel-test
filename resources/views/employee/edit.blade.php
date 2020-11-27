@@ -20,7 +20,6 @@
                     'class' => 'btn btn-outline-secondary',
                     'role' => 'button',
                     'data-disable-with' => 'Сохраняем',
-                    'formnovalidate',
                 ]) }}
             {{ Form::close() }}
         </section>
