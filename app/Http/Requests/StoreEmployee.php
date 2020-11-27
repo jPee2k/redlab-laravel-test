@@ -68,9 +68,9 @@ class StoreEmployee extends FormRequest
             'patronymic.min' => 'Отчество не может содержать менее 4-х букв!',
             'patronymic.max' => 'Превышен лимит символов!',
 
-            'salary.numeric' => 'Допустимы полько цифры!',
+            'salary.numeric' => 'Допустимы только цифры!',
 
-            'departments.required' => 'Сотрудник должен входить в состав хотя бы одного подразделения!'
+            'departments.required' => 'Сотрудник должен входить в состав хотя бы одного отдела!'
         ];
     }
 }
