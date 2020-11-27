@@ -41,7 +41,7 @@ class StoreEmployee extends FormRequest
             // 'last_name' => 'required|min:2|max:255|alpha',
             'patronymic' => 'nullable|min:4|max:255|alpha',
             'gender' => 'nullable',
-            'salary' => 'nullable|numeric',
+            'salary' => 'nullable|numeric|between:0,999999.99',
             'departments' => 'required'
         ];
     }

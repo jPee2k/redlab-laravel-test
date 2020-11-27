@@ -19,7 +19,7 @@ class CreateStaffTable extends Migration
             $table->string('last_name');
             $table->string('patronymic')->nullable();
             $table->string('gender', 16)->nullable();
-            $table->float('salary')->nullable();
+            $table->decimal('salary', 8, 2)->nullable();
             $table->timestamps();
         });
     }
